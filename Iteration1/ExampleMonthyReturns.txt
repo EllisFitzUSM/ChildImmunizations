@@ -1,0 +1,49 @@
+GHANA HEALTH SERVICE  
+IMMUNIZATION MONTHLY RETURNS  
+
+Immunization Centre/Clinic:
+Metro:
+Region:
+For the month of:
+
+| Disease          | Vaccine | No. of doses |                     NUMBER GIVEN (BY AGE GROUP)                                  |                  Number of Doses Used                 |  
+|                  |         |              | 0 - 11 Months | 12 - 23 Months | 24 Months and above  | Total doses administered | 2 doses | 5 doses | 10 doses | 20 doses | Total doses | Wastage rate |  
+|------------------|---------|--------------|---------------|----------------|----------------------|--------------------------|---------|---------|----------|----------|-------------|--------------|  
+| Tuberculosis     | BCG     | 1            |               |                |                      |                          |         |         |          |          |             |              |  
+| Diphtheria       |         | 1st          |               |                |                      |                          |         |         |          |          |             |              |  
+| Pertussis        |         | 2nd          |               |                |                      |                          |         |         |          |          |             |              |  
+| Tetanus          | PBATA   | 3rd          |               |                |                      |                          |         |         |          |          |             |              |  
+| Hepatitis B      |         |              |               |                |                      |                          |         |         |          |          |             |              |  
+| H-influenza B    |         |              |               |                |                      |                          |         |         |          |          |             |              |  
+| Poliomyelitis    | OPV     | At Birth     |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 1st          |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 2nd          |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 3rd          |               |                |                      |                          |         |         |          |          |             |              |  
+| Measles          | Measles | 1            |               |                |                      |                          |         |         |          |          |             |              |  
+| Yellow Fever     | YF      | 1            |               |                |                      |                          |         |         |          |          |             |              |  
+| Tetanus          | TT      |              | Pregnant      | Non Pregnant   | Others               |                          |         |         |          |          |             |              |
+|                  |         | 1st          |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 2nd          |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 3rd          |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 4th          |               |                |                      |                          |         |         |          |          |             |              |  
+|                  |         | 5th          |               |                |                      |                          |         |         |          |          |             |              |  
+
+
+Vitamin A supplementation  
+                        
+| Vitamin A Deficiency | 6 - 11 months | 12 - 59 months | Post-Partum | 100000 IU | 200000 IU |  
+|----------------------|---------------|----------------|-------------|-----------|-----------|
+| Vitamin A            |               |                                                      |
+| Number AEFI reported |               |
+
+
+Injection safety and waste management
+
+| Number of safety boxes used |   |
+| Number of safety boxes disposed of/burnt | 1. Incinerator |    | 2. Pit |    |             
+
+
+
+
+
+
