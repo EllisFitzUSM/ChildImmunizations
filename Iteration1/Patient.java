@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * Patient Class for Immunizations
  * @author Ellis Fitzgerald
@@ -19,7 +21,7 @@ public class Patient {
      * @param address The address this patient resides
      * @param mothersName The name of this patients mother
      */
-    public Patient(String ID, String name, Date dateOfBirth, String address, String mothersName) {
+    public Patient(String ID, String name, LocalDate dateOfBirth, String address, String mothersName) {
         this.ID = ID;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -57,5 +59,29 @@ public class Patient {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Get the patients DOB
+     * @return Java LocalDate
+     */
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    /**
+     * Get the patients address
+     * @return String representing address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Get the patients mothers name
+     * @return String representing the mothers name
+     */
+    public String getMothersName() {
+        return mothersName;
     }
 }
