@@ -6,15 +6,16 @@
  * This class will be used to manage the clinic's operations..
  */
 
+import java.util.ArrayList;
+
 public class Clinic {
     // -------------------------------
     // Fields for storing clinic details
     // -------------------------------
     private String name;                // The name of the clinic
     private String address;             // The physical address of the clinic
-    private int numberOfDoctors;        // The number of doctors working at the clinic
-    private List<Immunization> immunizations = new ArrayList<>();  // List to store immunization records
-    private List<Patient> patients = new ArrayList<>();            // List to store patient records
+    private ArrayList<Vaccine> immunizations = new ArrayList<>();  // List to store immunization records (NEED TO CHANGE TO A VISIT CLASS EVENTUALLY)
+    private ArrayList<Patient> patients = new ArrayList<>();            // List to store patient records
 
     // -------------------------------
     // Constructors
@@ -27,21 +28,18 @@ public class Clinic {
     public Clinic() {
         this.name = "Default Clinic";        // Set a default name for the clinic
         this.address = "Unknown Address";     // Set a default address
-        this.numberOfDoctors = 0;             // Default number of doctors is 0
     }
 
     /**
      * Parameterized constructor.
-     * Initializes the clinic with the provided name, address, and number of doctors.
+     * Initializes the clinic with the provided name, and address.
      *
      * @param name             The name of the clinic.
      * @param address          The address of the clinic.
-     * @param numberOfDoctors  The number of doctors working at the clinic.
      */
-    public Clinic(String name, String address, int numberOfDoctors) {
+    public Clinic(String name, String address) {
         this.name = name;
         this.address = address;
-        this.numberOfDoctors = numberOfDoctors;
         this.immunizations = new ArrayList<>();
         this.patients = new ArrayList<>();
     }
@@ -87,21 +85,14 @@ public class Clinic {
     }
 
     /**
-     * Gets the number of doctors at the clinic.
-     *
-     * @return The number of doctors.
+     * Adds a patient to the list
+     * 
+     * @param patient The patient to be added
+     * @return true when completed
      */
-    public int getNumberOfDoctors() {
-        return numberOfDoctors;
-    }
-
-    /**
-     * Sets the number of doctors at the clinic.
-     *
-     * @param numberOfDoctors The new number of doctors.
-     */
-    public void setNumberOfDoctors(int numberOfDoctors) {
-        this.numberOfDoctors = numberOfDoctors;
+    public boolean addPatient(Patient patient){
+        this.patients.add(patient);
+        return true;
     }
 
     // -------------------------------
@@ -117,8 +108,7 @@ public class Clinic {
     @Override
     public String toString() {
         return "Clinic [Name: " + name 
-                + ", Address: " + address 
-                + ", Number of Doctors: " + numberOfDoctors + "]";
+                + ", Address: " + address + "]";
     }
     //-------------------------------------------------
     // Method for reporting and recording Immunizations
@@ -128,8 +118,8 @@ public class Clinic {
     *
      * @param immunization The Immunization record to add.
      */
-    public void recordImmunization(Immunization immunization) {
-    immunizations.add(immunization);
+    public void recordImmunization(Vaccine immunization) { // NEEDS TO BE VISIT
+        immunizations.add(immunization);
     }
 
     /**
@@ -145,7 +135,7 @@ public class Clinic {
     if (immunizations.isEmpty()) {
         report.append("No immunizations recorded.\n");
     } else {
-        for (Immunization imm : immunizations) {
+        for (Vaccine imm : immunizations) {
             report.append(imm.toString()).append("\n");
         }
     }
@@ -165,7 +155,7 @@ public class Clinic {
      */
     public static void main(String[] args) {
         // Create a Clinic instance using the parameterized constructor
-        Clinic clinic = new Clinic("City Clinic", "123 Main Street", 5);
+        Clinic clinic = new Clinic("City Clinic", "123 Main Street");
         
         // Print out the clinic details using the overridden toString method
         System.out.println(clinic);
