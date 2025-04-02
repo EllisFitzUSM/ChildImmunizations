@@ -13,6 +13,8 @@ public class Clinic {
     private String name;                // The name of the clinic
     private String address;             // The physical address of the clinic
     private int numberOfDoctors;        // The number of doctors working at the clinic
+    private List<Immunization> immunizations = new ArrayList<>();  // List to store immunization records
+    private List<Patient> patients = new ArrayList<>();            // List to store patient records
 
     // -------------------------------
     // Constructors
@@ -40,6 +42,8 @@ public class Clinic {
         this.name = name;
         this.address = address;
         this.numberOfDoctors = numberOfDoctors;
+        this.immunizations = new ArrayList<>();
+        this.patients = new ArrayList<>();
     }
 
     // -------------------------------
@@ -116,6 +120,38 @@ public class Clinic {
                 + ", Address: " + address 
                 + ", Number of Doctors: " + numberOfDoctors + "]";
     }
+    //-------------------------------------------------
+    // Method for reporting and recording Immunizations
+    //-------------------------------------------------
+    /**
+    * Records a new immunization in the clinic.
+    *
+     * @param immunization The Immunization record to add.
+     */
+    public void recordImmunization(Immunization immunization) {
+    immunizations.add(immunization);
+    }
+
+    /**
+    * Returns a report of all immunizations recorded in the clinic.
+    * The report is a formatted string listing each immunization record.
+    *
+    * @return A string report of immunizations.
+    */
+    public String getReport() {
+    StringBuilder report = new StringBuilder();
+    report.append("Clinic Immunization Report for ").append(name).append(":\n");
+    
+    if (immunizations.isEmpty()) {
+        report.append("No immunizations recorded.\n");
+    } else {
+        for (Immunization imm : immunizations) {
+            report.append(imm.toString()).append("\n");
+        }
+    }
+    return report.toString();
+    }
+
 
     // -------------------------------
     // Main Method for Testing
