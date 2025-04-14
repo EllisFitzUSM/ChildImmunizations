@@ -1,8 +1,9 @@
 /*
+ * Check to see if a patient is dosable
+ *
  * Dosable.java
  * @author Gabrielle Akers
  * version: 4/14/2025
- * check to see if a patient is dosable
  */
 import java.time.LocalDate;
 
@@ -15,6 +16,8 @@ public class Dosable {
 	int age;
 	int minAge;
 	boolean dosable;
+	int vitaminNeeded;
+	int deficient;
 	
 	/**
 	 * Checks if the patient's age meets the minimum required age.
@@ -68,4 +71,16 @@ public class Dosable {
 		return false;
 	}
 	
+	/**
+	 * Determines whether the patient needs a vitamin
+	 * A patient is dosable if they are deficient in that vitamin
+	 * 
+	 * @return true if condition is met, false otherwise
+	 */
+	public boolean isDeficient() {
+		if(vitaminNeeded >= deficient) {
+			return true;
+		}
+		return false;
+	}	
 }
