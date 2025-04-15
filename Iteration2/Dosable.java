@@ -1,9 +1,9 @@
-/*
+/** Dosable.java
  * Check to see if a patient is dosable
  *
- * Dosable.java
+ * 
  * @author Gabrielle Akers
- * version: 4/14/2025
+ * April 14, 2025
  */
 import java.time.LocalDate;
 
@@ -18,7 +18,7 @@ public class Dosable {
 	boolean dosable;
 	int vitaminNeeded;
 	int deficient;
-	
+
 	/**
 	 * Checks if the patient's age meets the minimum required age.
 	 * 
@@ -30,7 +30,7 @@ public class Dosable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Checks if the patient has received fewer than the maximum allowed doses.
 	 * 
@@ -42,7 +42,7 @@ public class Dosable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Checks if the current date is after the date the patient is allowed to receive the next dose.
 	 * 
@@ -56,7 +56,7 @@ public class Dosable {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Determines whether the patient is eligible (dosable) to receive a new dose.
 	 * A patient is dosable if they meet the age requirement, have not exceeded the max dose,
@@ -70,7 +70,7 @@ public class Dosable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Determines whether the patient needs a vitamin
 	 * A patient is dosable if they are deficient in that vitamin
