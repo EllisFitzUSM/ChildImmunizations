@@ -1,0 +1,8 @@
+Date  Child ID  Child Name  Mother Name  Parity  Address  Date Registered  DOB  Sex  Weight(kg)
+03/12/2023	001	Kwame Osei	Abena Osei	2	Ashaiman, Greater Accra	03/10/2023	03/05/2023	M	3.2
+04/15/2023	002	Adjoa Boateng	Efua Boateng	1	Kumasi, Ashanti Region	04/14/2023	04/10/2023	F	2.9
+05/22/2023	003	Yaw Agyeman	Akosua Agyeman	3	Tamale, Northern Region	05/20/2023	05/18/2023	M	3.5
+06/03/2023	004	Ama Nyarko	Serwaa Nyarko	1	Cape Coast, Central Region	06/01/2023	05/30/2023	F	3.1
+07/18/2023	005	Kofi Owusu	Akua Owusu	4	Tema, Greater Accra	07/16/2023	07/14/2023	M	3.4
+08/25/2023	006  Esi Tetteh	Mabel Tetteh	2	Ho, Volta Region	08/23/2023	08/21/2023	F	2.8
+09/09/2023	007	Kwesi Appiah	Grace Appiah	1	Takoradi, Western Region	09/07/2023	09/05/2023	M	3.0

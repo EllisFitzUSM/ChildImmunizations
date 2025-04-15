@@ -125,7 +125,10 @@ public class Clinic {
         }
         return report.toString();
     }
-
+    public Register makeRegister() {
+        //TODO
+    	return null;
+    }
     /**
     * Main method to test the basic functionality of the Clinic class.
     * Demonstrates creating a Clinic instance and printing its details.
