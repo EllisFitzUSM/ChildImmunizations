@@ -1,9 +1,10 @@
 /*
  * Register.java
- * @author:Milo Keys
- * @version:
  * Represents a the Register returns required for Ghana clinics.
  * This class holds data for each for patient visits.
+ *
+ * @author:Milo Keys
+ * April 14, 2025
  */
 
  import java.time.LocalDate;
@@ -12,16 +13,17 @@
  public class Register {
      static final DateTimeFormatter DATEFORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-     LocalDate dateOfVisit;
-     int childID;
-     String name;
-     String motherName;
-     int parity;
-     String address;
-     LocalDate registered; //Date Registered 
-     LocalDate DOB;
-     char sex;
-     double weight;
+     private LocalDate dateOfVisit;
+     private int childID;
+     private String name;
+     private String motherName;
+     private int parity;
+     private String address;
+     private LocalDate registered; // Date Registered
+     private LocalDate DOB;
+     private char sex;
+     private double weight;
+
  
      public Register(
              LocalDate dateOfVisit, int childID,
@@ -172,6 +174,9 @@
       * @return the weight of the child
       */
      public double getWeight() {
+         if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative.");
+         }
          return weight;
      }
  
