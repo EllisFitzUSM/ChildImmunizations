@@ -1,7 +1,9 @@
 /**
- * @author Ellis Fitzgerald
- * @version March 31st 2025
+ * Main.java
  * Basic Entry Point to Test Child Immunization Functionality
+ *
+ * @author Ellis Fitzgerald
+ * March 31st 2025
  */
 public class Main {
 
