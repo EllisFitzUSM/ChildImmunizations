@@ -1,10 +1,13 @@
+/**
+ * Patient.java
+ * Patient Class for Immunizations
+ *
+ * @author Ellis Fitzgerald
+ * March 31st, 2025
+ */
+
 import java.time.LocalDate;
 
-/**
- * Patient Class for Immunizations
- * @author Ellis Fitzgerald
- * @version March 31st, 2025
- */
 public class Patient {
     private String ID;
     private String name;
@@ -15,11 +18,12 @@ public class Patient {
 
     /**
      * Constructs a Patient Instance
+     *
      * @param ID The unique and ideally universal identifier for this patient.
      * @param name The name this patient goes by
      * @param dateOfBirth The date this patient was born.
-     * @param address The address this patient resides
-     * @param mothersName The name of this patients mother
+     * @param address The address this patient resides at
+     * @param mothersName The name of this patient's mother
      */
     public Patient(String ID, String name, LocalDate dateOfBirth, String address, String mothersName) {
         this.ID = ID;
@@ -30,7 +34,8 @@ public class Patient {
     }
 
     /**
-     * Get the patients weight
+     * Get the patient's weight
+     *
      * @return Weight in kilograms
      */
     public double getWeightKG() {
@@ -38,7 +43,8 @@ public class Patient {
     }
 
     /**
-     * Changes the weight for the patient
+     * Sets the weight for the patient
+     *
      * @param weightKG The amount of weight in kilograms to set the patient to.
      */
     public void setWeightKG(double weightKG) {
@@ -46,7 +52,8 @@ public class Patient {
     }
 
     /**
-     * Get the patients unique and ideally universal identifer
+     * Get the patient's unique and ideally universal identifier
+     *
      * @return The String representing their ID
      */
     public String getID() {
@@ -54,7 +61,8 @@ public class Patient {
     }
 
     /**
-     * Get the patients name
+     * Get the patient's name
+     *
      * @return The String representing their name
      */
     public String getName() {
@@ -62,7 +70,8 @@ public class Patient {
     }
 
     /**
-     * Get the patients DOB
+     * Get the patient's DOB (Date of Birth)
+     *
      * @return Java LocalDate
      */
     public LocalDate getDateOfBirth() {
@@ -70,7 +79,8 @@ public class Patient {
     }
 
     /**
-     * Get the patients address
+     * Get the patient's address
+     *
      * @return String representing address
      */
     public String getAddress() {
@@ -78,8 +88,9 @@ public class Patient {
     }
 
     /**
-     * Get the patients mothers name
-     * @return String representing the mothers name
+     * Get the patient's mother's name
+     *
+     * @return String representing the mother's name
      */
     public String getMothersName() {
         return mothersName;
