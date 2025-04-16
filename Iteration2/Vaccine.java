@@ -1,9 +1,10 @@
 /*
  * Vaccine.java
- * @author:Milo Keys
- * @version:
  * Represents a simple vaccine class with basic attributes and methods.
  * This class will be used to hold data for each vaccine.
+ *
+ * @author Milo Keys
+ * April 14, 2025
  */
 
 import java.util.ArrayList;
@@ -21,14 +22,15 @@ public class Vaccine {
     ArrayList<String> diseasesTreated;
 
     /**
-     * 
-     * @param ID the ID for Vaccine
-     * @param name name of Vaccine
-     * @param brand brand of Vaccine
-     * @param dosage dosage amount
-     * @param numOfDosage how many dosage
-     * @param Interval the interval between Vaccinations
-     * @param MinAge the minuman age that the Vaccine can be administrated
+     * Constructs a Vaccine instance.
+     *
+     * @param ID the ID for the Vaccine
+     * @param name name of the Vaccine
+     * @param brand brand of the Vaccine
+     * @param dosage the dosage amount
+     * @param numOfDosage the number of dosages
+     * @param Interval the interval between Vaccinations (in days)
+     * @param MinAge the minimum age that the Vaccine can be administered
      * @param adminMode how is the Vaccine injected
      * @param adminLocation where the Vaccine is injected
      * @param diseasesTreated what diseases does the Vaccine treat
