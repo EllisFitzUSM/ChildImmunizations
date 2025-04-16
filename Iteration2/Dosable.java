@@ -1,9 +1,9 @@
-/*
+/**
+ * Dosable.java
  * Check to see if a patient is dosable
  *
- * Dosable.java
  * @author Gabrielle Akers
- * version: 4/14/2025
+ * April 14, 2025
  */
 import java.time.LocalDate;
 
