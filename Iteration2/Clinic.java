@@ -86,18 +86,6 @@ public class Clinic {
     }
 
     /**
-    * Provides a string representation of the Clinic object.
-    * This method helps in printing and logging the details of the clinic.
-    *
-    * @return A formatted string with clinic details.
-    */
-    @Override
-    public String toString() {
-        return "Clinic [Name: " + name 
-                + ", Address: " + address + "]";
-    }
-
-    /**
     * Records a new immunization in the clinic.
     *
     * @param immunization The Immunization record to add.
@@ -125,7 +113,61 @@ public class Clinic {
         }
         return report.toString();
     }
+    /**
+     * Adds a monthly return record to this clinic.
+     *
+     * @param r The Return record to add.
+     * @return true if the record was added successfully.
+     */
+    public boolean addMonthlyReturn(Return r) {
+        return monthlyReturns.add(r);
+    }
 
+    /**
+     * Generates a formatted monthly return report including all recorded returns.
+     *
+     * @return A string representing the clinic's monthly return report.
+     */
+    public String makeMonthlyReport() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Monthly Return Report for ").append(name)
+          .append(" (").append(address).append(")\n");
+        sb.append("================================================\n");
+        if (monthlyReturns.isEmpty()) {
+            sb.append("No monthly returns recorded.\n");
+        } else {
+            for (Return r : monthlyReturns) {
+                sb.append(r).append("\n");
+                sb.append("------------------------------------------------\n");
+            }
+        }
+        return sb.toString();
+    }
+   /**
+     * Creates and returns a sample Register record for demonstration.
+     *
+     * @return A sample Register instance.
+     */
+    public Register makeRegister() {
+        return new Register(
+            LocalDate.of(2025, 4, 15), 100,
+            "John Matworth", "Alice Matworth", 1,
+            "1328 SW 21st St Blue Springs, Missouri, 64015",
+            LocalDate.of(2020, 1, 20),
+            LocalDate.of(2019, 8, 9), 'M', 55.51
+        )
+    }
+    /**
+    * Provides a string representation of the Clinic object.
+    * This method helps in printing and logging the details of the clinic.
+    *
+    * @return A formatted string with clinic details.
+    */
+    @Override
+    public String toString() {
+        return "Clinic [Name: " + name 
+                + ", Address: " + address + "]";
+    }
     /**
     * Main method to test the basic functionality of the Clinic class.
     * Demonstrates creating a Clinic instance and printing its details.
@@ -135,8 +177,24 @@ public class Clinic {
     public static void main(String[] args) {
         // Create a Clinic instance using the parameterized constructor
         Clinic clinic = new Clinic("City Clinic", "123 Main Street");
-        
+        // Demonstrate Register creation
+        Register reg = clinic.makeRegister();
+        System.out.println("Sample Register Record:");
+        System.out.println(reg);
+
+        // Demonstrate immunization report (empty)
+        System.out.println(clinic.getImmunizationReport());
+
+        // Create and add a sample monthly return
+        Return april = new Return(
+            "City Clinic", "Metro Zone", "Central Region", "April 2025",
+            500, 480, 4.0,
+            10, 1, 25,
+            18, 7
+        )
+        clinic.addMonthlyReturn(april);
+
         // Print out the clinic details using the overridden toString method
-        System.out.println(clinic);
+        System.out.println(clinic.makeMonthlyReport());
     }
 }
