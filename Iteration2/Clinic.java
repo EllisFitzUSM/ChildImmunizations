@@ -8,6 +8,7 @@
 */
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Clinic {
     private String name;                // The name of the clinic
@@ -100,7 +101,7 @@ public class Clinic {
     *
     * @return A string report of immunizations.
     */
-    public String getReport() {
+    public String getImmunizationReport() {
         StringBuilder report = new StringBuilder();
         report.append("Clinic Immunization Report for ").append(name).append(":\n");
     
