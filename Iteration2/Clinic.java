@@ -13,9 +13,9 @@ import java.time.LocalDate;
 public class Clinic {
     private String name;                // The name of the clinic
     private String address;             // The physical address of the clinic
-    private ArrayList<Vaccine> immunizations = new ArrayList<>();  // List to store immunization records (NEED TO CHANGE TO A VISIT CLASS EVENTUALLY)
-    private ArrayList<Patient> patients = new ArrayList<>();       // List to store patient records
-
+    private List<Vaccine> immunizations = new ArrayList<>();  // List to store immunization records (NEED TO CHANGE TO A VISIT CLASS EVENTUALLY)
+    private List<Patient> patients = new ArrayList<>();       // List to store patient records
+    private List<Return> monthlyReturns = new ArrayList<>();        //List to store monthly return records.
     /**
     * Default constructor.
     * Initializes the clinic with default values.
@@ -166,8 +166,7 @@ public class Clinic {
     */
     @Override
     public String toString() {
-        return "Clinic [Name: " + name 
-                + ", Address: " + address + "]";
+        return String.format("Clinic [Name: %s, Address: %s]", name, address);
     }
     /**
     * Main method to test the basic functionality of the Clinic class.
