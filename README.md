@@ -12,7 +12,7 @@ Team 2: Ellis Fitzgerald and Gabrielle Akers
 3. Develop a system to alert CHO's of immunization needs
 
 ## Commenting Styling:
-**FILE/CLASS:**
+**Classes & files:**
 
 ```
 /**
@@ -24,7 +24,7 @@ Team 2: Ellis Fitzgerald and Gabrielle Akers
 */
 ```
 
-**FUNCTION/METHOD:**
+**Function & methods:**
 ```
 /**
 * Summary of function/method. Can span multiple lines.
