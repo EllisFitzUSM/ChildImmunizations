@@ -16,8 +16,9 @@ Team 2: Ellis Fitzgerald and Gabrielle Akers
 
 ```
 /**
-* File name w/ .java
-* Summary of file/class. Can span multiple lines.
+* FileName.java
+* Summary of file/class.
+* Can span multiple lines.
 *
 * @author Insert Name
 * Month Day, Year
@@ -27,7 +28,8 @@ Team 2: Ellis Fitzgerald and Gabrielle Akers
 **Function & methods:**
 ```
 /**
-* Summary of function/method. Can span multiple lines.
+* Summary of function/method.
+* Can span multiple lines.
 *
 * @param name *Insert purpose*
 * @return type *Insert purpose*
