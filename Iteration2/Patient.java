@@ -1,87 +1,125 @@
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 /**
- * Patient Class for Immunizations
- * @author Ellis Fitzgerald
- * @version March 31st, 2025
+ * Patient class as reference.
+ * This comment is added by Immunizations.
+ *
+ * @author Consulting Register Team
+ * @version April 17th, 2025
  */
-public class Patient {
-    private String ID;
+public abstract class Patient {
+    private String patientId;
+    private Date dateOfBirth;
     private String name;
-    private LocalDate dateOfBirth;
-    private double weightKG;
+    private String outPatientNumber;
+    private String healthInsuranceNumber;
+    private String nationalIdentificationNumber;
     private String address;
-    private String mothersName;
+    private String sex;
+    private int age;
+    private String motherId;
+    private List<Record> records;
 
-    /**
-     * Constructs a Patient Instance
-     * @param ID The unique and ideally universal identifier for this patient.
-     * @param name The name this patient goes by
-     * @param dateOfBirth The date this patient was born.
-     * @param address The address this patient resides
-     * @param mothersName The name of this patients mother
-     */
-    public Patient(String ID, String name, LocalDate dateOfBirth, String address, String mothersName) {
-        this.ID = ID;
-        this.name = name;
+    // Constructor
+    public Patient(String patientId, Date dateOfBirth, String name, String outPatientNumber, 
+                   String healthInsuranceNumber, String nationalIdentificationNumber, 
+                   String address, String sex, int age, String motherId, List<Record> records) {
+        this.patientId = patientId;
         this.dateOfBirth = dateOfBirth;
+        this.name = name;
+        this.outPatientNumber = outPatientNumber;
+        this.healthInsuranceNumber = healthInsuranceNumber;
+        this.nationalIdentificationNumber = nationalIdentificationNumber;
         this.address = address;
-        this.mothersName = mothersName;
+        this.sex = sex;
+        this.age = age;
+        this.motherId = motherId;
+        this.records = records;
     }
 
-    /**
-     * Get the patients weight
-     * @return Weight in kilograms
-     */
-    public double getWeightKG() {
-        return weightKG;
+    // Getters and Setters (optional, if needed)
+    public String getPatientId() {
+        return patientId;
     }
 
-    /**
-     * Changes the weight for the patient
-     * @param weightKG The amount of weight in kilograms to set the patient to.
-     */
-    public void setWeightKG(double weightKG) {
-        this.weightKG = weightKG;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
-    /**
-     * Get the patients unique and ideally universal identifer
-     * @return The String representing their ID
-     */
-    public String getID() {
-        return ID;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    /**
-     * Get the patients name
-     * @return The String representing their name
-     */
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getName() {
         return name;
     }
 
-    /**
-     * Get the patients DOB
-     * @return Java LocalDate
-     */
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * Get the patients address
-     * @return String representing address
-     */
+    public String getOutPatientNumber() {
+        return outPatientNumber;
+    }
+
+    public void setOutPatientNumber(String outPatientNumber) {
+        this.outPatientNumber = outPatientNumber;
+    }
+
+    public String getHealthInsuranceNumber() {
+        return healthInsuranceNumber;
+    }
+
+    public void setHealthInsuranceNumber(String healthInsuranceNumber) {
+        this.healthInsuranceNumber = healthInsuranceNumber;
+    }
+
+    public String getNationalIdentificationNumber() {
+        return nationalIdentificationNumber;
+    }
+
+    public void setNationalIdentificationNumber(String nationalIdentificationNumber) {
+        this.nationalIdentificationNumber = nationalIdentificationNumber;
+    }
+
     public String getAddress() {
         return address;
     }
 
-    /**
-     * Get the patients mothers name
-     * @return String representing the mothers name
-     */
-    public String getMothersName() {
-        return mothersName;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public int getAge() {return age;}
+
+    public void setAge(int age) {this.age = age;}
+
+    public String getMotherId() {
+        return motherId;
+    }
+
+    public void setMotherId(String motherId) {
+        this.motherId = motherId;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
     }
 }

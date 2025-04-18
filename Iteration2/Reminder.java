@@ -8,6 +8,12 @@
  */
 import java.time.LocalDate;
 
+/**
+ * Reminder used to notify patients about a vaccine
+ *
+ * @author ?
+ * @version April 17th, 2025
+ */
 public class Reminder {
 	int vaccineID;
 	LocalDate dueDate;

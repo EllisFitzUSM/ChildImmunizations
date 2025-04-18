@@ -1,21 +1,22 @@
+import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
+
 /**
 * Clinic.java
 * Basic Clinic class that has little functionality at this point.
 * This class will be used to manage the clinic's operations.
 *
 * @author Abdirahman Mohamed
-* April 1, 2025
+* @version April 1, 2025
 */
-
-import java.util.ArrayList;
-import java.time.LocalDate;
-
 public class Clinic {
-    private String name;                // The name of the clinic
-    private String address;             // The physical address of the clinic
-    private List<Vaccine> immunizations = new ArrayList<>();  // List to store immunization records (NEED TO CHANGE TO A VISIT CLASS EVENTUALLY)
-    private List<Patient> patients = new ArrayList<>();       // List to store patient records
-    private List<Return> monthlyReturns = new ArrayList<>();        //List to store monthly return records.
+    private String name;                                        // The name of the clinic
+    private String address;                                     // The physical address of the clinic
+    private List<Vaccine> immunizations = new ArrayList<>();    // List to store immunization records (NEED TO CHANGE TO A VISIT CLASS EVENTUALLY)
+    private List<Patient> patients = new ArrayList<>();         // List to store patient records
+    private List<Return> monthlyReturns = new ArrayList<>();    //List to store monthly return records.
+    private List<Visit> visits = new ArrayList<>();
     /**
     * Default constructor.
     * Initializes the clinic with default values.
@@ -81,9 +82,18 @@ public class Clinic {
     * @param patient The patient to be added.
     * @return true when completed.
     */
-    public boolean addPatient(Patient patient){
+    public boolean addPatient(Patient patient) {
         this.patients.add(patient);
         return true;
+    }
+
+    /**
+     * Adds a visit to the clinic.
+     *
+     * @param visit Visit to be added
+     */
+    public void addVisit(Visit visit) {
+        this.visits.add(visit);
     }
 
     /**
@@ -146,6 +156,7 @@ public class Clinic {
     }
    /**
      * Creates and returns a sample Register record for demonstration.
+    * FIXME: Unimplemented.
      *
      * @return A sample Register instance.
      */
@@ -156,7 +167,7 @@ public class Clinic {
             "1328 SW 21st St Blue Springs, Missouri, 64015",
             LocalDate.of(2020, 1, 20),
             LocalDate.of(2019, 8, 9), 'M', 55.51
-        )
+        );
     }
     /**
     * Provides a string representation of the Clinic object.
@@ -191,7 +202,7 @@ public class Clinic {
             500, 480, 4.0,
             10, 1, 25,
             18, 7
-        )
+        );
         clinic.addMonthlyReturn(april);
 
         // Print out the clinic details using the overridden toString method

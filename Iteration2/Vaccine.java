@@ -1,18 +1,16 @@
-/*
- * Vaccine.java
- * @author:Milo Keys
- * @version:
- * Represents a simple vaccine class with basic attributes and methods.
- * This class will be used to hold data for each vaccine.
- */
-
 import java.util.ArrayList;
 
-public class Vaccine {
+/**
+ * Vaccine class extending Dosable
+ *
+ * @author Milo Keys & Ellis Fitzgerald
+ * @version April 17th, 2025
+ */
+public class Vaccine extends Dosable {
     int ID;
     String name;
     String brand;
-    int dosage;
+    int dosageML;
     int numOfDosage;
     int Interval; //in days
     int MinAge;
@@ -21,11 +19,12 @@ public class Vaccine {
     ArrayList<String> diseasesTreated;
 
     /**
-     * 
+     * Constructs a vaccine
+     *
      * @param ID the ID for Vaccine
      * @param name name of Vaccine
      * @param brand brand of Vaccine
-     * @param dosage dosage amount
+     * @param dosageML dosage amount in milliliters
      * @param numOfDosage how many dosage
      * @param Interval the interval between Vaccinations
      * @param MinAge the minuman age that the Vaccine can be administrated
@@ -33,17 +32,26 @@ public class Vaccine {
      * @param adminLocation where the Vaccine is injected
      * @param diseasesTreated what diseases does the Vaccine treat
      */
-    public Vaccine(int ID, String name, String brand, int dosage, int numOfDosage, int Interval,
+    public Vaccine(int ID, String name, String brand, int dosageML, int numOfDosage, int Interval,
                    int MinAge, String adminMode, String adminLocation, ArrayList<String> diseasesTreated) {
         this.ID = ID;
         this.name = name;
         this.brand = brand;
-        this.dosage = dosage;
+        this.dosageML = dosageML;
         this.numOfDosage = numOfDosage;
         this.Interval = Interval;
         this.MinAge = MinAge;
         this.adminMode = adminMode;
         this.adminLocation = adminLocation;
         this.diseasesTreated = diseasesTreated;
+    }
+
+    /**
+     * Gets the vaccines dosage in milliliters.
+     *
+     * @return Dosage in Milliliters.
+     */
+    public int getDosageML() {
+        return dosageML;
     }
 }
