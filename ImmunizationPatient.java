@@ -82,4 +82,13 @@ public class ImmunizationPatient extends Patient {
     		vaccineDoses.put(vaccine, getDoseNum(vaccine) + 1);
     	}
     }
+
+    /**
+     * Gets the list of vaccines and doses patient has received
+     *
+     * @return vaccinesDoses
+     */
+    public Map<Vaccine, Integer> getVaccineDoses() {
+    	return vaccineDoses;
+    }
 }
