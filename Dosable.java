@@ -60,7 +60,7 @@ public class Dosable {
 	 * 
 	 * @return true if all conditions are met, false otherwise
 	 */
-	public boolean isDosable(Patient patient, Vaccine vaccine) {
+	public boolean isDosable(ImmunizationPatient patient, Vaccine vaccine) {
 		//related to patient ages
 		age = patient.getAge();
 		minAge = vaccine.getMinAge();
@@ -69,7 +69,7 @@ public class Dosable {
 		nextDose = LocalDate.now().plusDays(vaccine.getInterval());
 		//related to number of doses
 		maxDose = vaccine.getNumOfDosage();
-		//**IMPORTANT** We need to add doseNum in another class because it currently isn't stored anywhere
+		doseNum = patient.getDoseNum(vaccine);
 		if(checkAge() && checkDosage() && checkDate()) {
 			return true;
 		}
