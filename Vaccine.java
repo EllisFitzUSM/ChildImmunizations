@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Milo Keys, Ellis Fitzgerald, & Gabrielle Akers
  * @version April 25, 2025
  */
-public class Vaccine extends Dosable {
+public class Vaccine {
     int ID;
     String name;
     String brand;
