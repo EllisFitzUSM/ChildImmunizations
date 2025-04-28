@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
@@ -14,7 +13,14 @@ public class Visit extends Dosable{
     private ImmunizationPatient patient;
     private LocalDate visitDate;
     private ArrayList<Vaccine> dosesAdministered;
-    private Map<Vaccine, Integer> vaccineDoses = patient.getVaccineDoses();
+    private Map<Vaccine, Integer> vaccineDoses;
+
+    public Visit(ImmunizationPatient patient, LocalDate visitDate, ArrayList<Vaccine> dosesAdministered){
+        this.patient = patient;
+        this.visitDate = visitDate;
+        this.dosesAdministered = dosesAdministered;
+        this.vaccineDoses = patient.getVaccineDoses();
+    }
     
     /**
      * Adds vaccine doses to the patient if the vaccine is eligible to be administered.
