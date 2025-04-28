@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Milo Keys, Ellis Fitzgerald, & Gabrielle Akers
  * @version April 25, 2025
  */
-public class Vaccine {
+public class Vaccine extends Dosable{
     int ID;
     String name;
     String brand;
@@ -39,8 +39,8 @@ public class Vaccine {
         this.brand = brand;
         this.dosageML = dosageML;
         this.numOfDosage = numOfDosage;
-        this.Interval = Interval;
-        this.MinAge = MinAge;
+        this.interval = Interval;
+        super.minAge = MinAge;
         this.adminMode = adminMode;
         this.adminLocation = adminLocation;
         this.diseasesTreated = diseasesTreated;
