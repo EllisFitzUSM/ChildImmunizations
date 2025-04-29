@@ -1,6 +1,7 @@
-import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Visit.java
@@ -11,17 +12,24 @@ import java.util.ArrayList;
  */
 public class Visit extends Dosable{
     private ImmunizationPatient patient;
-    private LocalDate visitDate;
+    private Date visitDate;
     private ArrayList<Vaccine> dosesAdministered;
-    private Map<Vaccine, Integer> vaccineDoses;
-
-    public Visit(ImmunizationPatient patient, LocalDate visitDate, ArrayList<Vaccine> dosesAdministered){
+    private Map<Vaccine, Integer> vaccineDoses; //this seems like a memory leak waiting to happen
+    
+    /**
+     * Constructs a Visit instance with the specified patient and visit date.
+     * Initializes the dosesAdministered list and sets the vaccineDoses from the patient.
+     *
+     * @param patient the ImmunizationPatient associated with this visit
+     * @param visitDate the date of the visit
+     */
+    public Visit(ImmunizationPatient patient, Date visitDate) {
         this.patient = patient;
         this.visitDate = visitDate;
-        this.dosesAdministered = dosesAdministered;
+        this.dosesAdministered = new ArrayList<>();
         this.vaccineDoses = patient.getVaccineDoses();
     }
-    
+
     /**
      * Adds vaccine doses to the patient if the vaccine is eligible to be administered.
      * Iterates through the available vaccine doses, checks if each vaccine can be
@@ -36,7 +44,16 @@ public class Visit extends Dosable{
     		}
     	}
     }
-    
+    /**
+     * Adds vaccine doses to the patient if the vaccine is eligible to be administered.
+     * Iterates through the available vaccine doses, checks if each vaccine can be
+     * given to the patient using {@code isDosable}, and if so, adds the dose to the patient
+     * and records it in the dosesAdministered
+     */
+    public void AdminsterDose(Vaccine vaccine) {  	
+        patient.addVaccineDoses(vaccine);
+        dosesAdministered.add(vaccine);
+    }
     /**
      * Returns the list of vaccine doses that have been administered to the patient.
      *
@@ -44,5 +61,50 @@ public class Visit extends Dosable{
      */
     public ArrayList<Vaccine> getDosesAdministered(){
     	return dosesAdministered;
+    }
+
+    /**
+     * Gets the patient associated with this visit.
+     *
+     * @return the ImmunizationPatient object
+     */
+    public ImmunizationPatient getPatient() {
+        return patient;
+    }
+
+    /**
+     * Sets the patient associated with this visit.
+     *
+     * @param patient the ImmunizationPatient to set
+     */
+    public void setPatient(ImmunizationPatient patient) {
+        this.patient = patient;
+    }
+
+    /**
+     * Gets the date of this visit.
+     *
+     * @return the LocalDate representing the visit date
+     */
+    public Date getVisitDate() {
+        return visitDate;
+    }
+
+    /**
+     * Sets the date of this visit.
+     *
+     * @param visitDate the LocalDate to set as the visit date
+     */
+    public void setVisitDate(Date visitDate) {
+        this.visitDate = visitDate;
+    }
+
+    /**
+     * Gets the map of vaccine doses associated with this visit.
+     *
+     * @return the Map of Vaccine to Integer representing vaccine doses
+     */
+    public Map<Vaccine, Integer> getVaccineDoses() {
+        return vaccineDoses;
     }
 }

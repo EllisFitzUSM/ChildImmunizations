@@ -117,4 +117,27 @@ public class Vaccine extends Dosable{
     public ArrayList<String> getDiseasesTreated(){
         return diseasesTreated;
     }
+
+    /**
+     * Returns a comprehensive string representation of the Vaccine object,
+     * including both vaccine-specific information and relevant dosage information
+     * from the parent Dosable class.
+     * 
+     * @return a string representation of the Vaccine object
+     */
+    @Override
+    public String toString() {
+        return "Vaccine{" +
+            "ID=" + ID +
+            ", name='" + name + '\'' +
+            ", brand='" + brand + '\'' +
+            ", dosageML=" + dosageML +
+            ", numOfDosage=" + numOfDosage +
+            ", interval=" + interval +
+            ", " + super.toString() + // Includes Dosable information
+            ", adminMode='" + adminMode + '\'' +
+            ", adminLocation='" + adminLocation + '\'' +
+            ", diseasesTreated=" + diseasesTreated +
+            '}';
+    }
 }

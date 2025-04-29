@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class ImmunizationPatient extends Patient {
     private double weightKG;
-    private Map <Vaccine, Integer> vaccineDoses = new HashMap<>();
+    private Map<Vaccine, Integer> vaccineDoses;
 
     /**
      * Creates an Immunization Patient
@@ -38,6 +38,7 @@ public class ImmunizationPatient extends Patient {
                 healthInsuranceNumber, nationalIdentificationNumber,
                 address, sex, age, motherId, records);
         this.weightKG = weightKG;
+        this.vaccineDoses = new HashMap<>();
     }
 
     /**
