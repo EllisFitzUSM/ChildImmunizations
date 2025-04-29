@@ -8,7 +8,6 @@ import java.util.Date;
  * @version April 1, 2025
  */
 public class Clinic {
-    private List<Patient> patients = new ArrayList<>();         // List to store patient records
     private ClinicModel model;
     private ClinicView view;
     private ClinicController controller;
