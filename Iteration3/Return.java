@@ -291,20 +291,21 @@ public class Return {
         sb.append("Metro: ").append(metro).append("\n");
         sb.append("Region: ").append(region).append("\n");
         sb.append("For the month of: ").append(month).append("\n\n");
-        sb.append("| Disease          | Vaccine | No. of doses | 0-11 Months | 12-23 Months | 24+ Months | Total Administered | 2 doses | 5 doses | 10 doses | 20 doses | Used | Wastage % |");
-        sb.append("|------------------|---------|--------------|-------------|--------------|------------|--------------------|---------|---------|----------|----------|------|-----------| ");
+        sb.append("| Disease          | Vaccine | No. of doses | 0-11 Months | 12-23 Months | 24+ Months | Total Administered | 2 doses | 5 doses | 10 doses | 20 doses | Used | Wastage % |\n");
+        sb.append("|------------------|---------|--------------|-------------|--------------|------------|--------------------|---------|---------|----------|----------|------|-----------|\n");
         sb.append(String.format("| %-16s | %-7s | %-12s | %-11s | %-12s | %-10s | %-18d | %-7s | %-7s | %-8s | %-8s | %-4d | %9.1f%% | ", "Summary", "--", "--", "--", "--", "--", totalDosesAdministered, "--", "--", "--", "--", totalDosesUsed, wastageRate));
-        sb.append("\nVitamin A supplementation\n\n");
-        sb.append("| Vitamin A Deficiency | 6-11 months | 12-59 months | Post-Partum |");
-        sb.append("|----------------------|-------------|--------------|-------------|");
+        sb.append("\n\nVitamin A supplementation\n");
+        sb.append("| Vitamin A Deficiency | 6-11 months | 12-59 months | Post-Partum |\n");
+        sb.append("|----------------------|-------------|--------------|-------------|\n");
         sb.append(String.format("| Number               | %-11d | %-12s | %-11s | ", vitaminADeficiency, "--", "--"));
-        sb.append(String.format("| AEFI reported        | %-11d | %-12s | %-11s | ", vitaminAAEFIReported, "--", "--"));
-        sb.append("Injection safety and waste management\n\n");
-        sb.append("| Description                                   | Count |");
-        sb.append("|-----------------------------------------------|-------|");
-        sb.append(String.format("| Safety boxes used                             | %5d |", safetyBoxesUsed));
-        sb.append(String.format("| Safety boxes disposed (incinerator)           | %5d |", safetyBoxesDisposedIncinerator));
-        sb.append(String.format("| Safety boxes disposed (pit)                   | %5d |", safetyBoxesDisposedPit));
+        sb.append(String.format("\n| AEFI reported        | %-11d | %-12s | %-11s | ", vitaminAAEFIReported, "--", "--"));
+        sb.append("\n\nInjection safety and waste management\n");
+        sb.append("| Description                                   | Count |\n");
+        sb.append("|-----------------------------------------------|-------|\n");
+        sb.append(String.format("| Safety boxes used                             | %5d |\n", safetyBoxesUsed));
+        sb.append(String.format("| Safety boxes disposed (incinerator)           | %5d |\n", safetyBoxesDisposedIncinerator));
+        sb.append(String.format("| Safety boxes disposed (pit)                   | %5d |\n", safetyBoxesDisposedPit));
+        sb.append("\nEnd Report.");
         return sb.toString();
     }
 

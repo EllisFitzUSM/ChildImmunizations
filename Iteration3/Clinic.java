@@ -123,7 +123,6 @@ public class Clinic {
      * 
      * @param args Command line arguments (not used)
      */
-    @SuppressWarnings("deprecation")
     public static void main(String[] args) {
         // Create a Clinic instance
         Clinic clinic = new Clinic("City Clinic", "123 Main Street");
@@ -143,7 +142,7 @@ public class Clinic {
         // Generate reports
         clinic.makeMonthlyReport();
         ImmunizationPatient testPatient = new ImmunizationPatient("1", new Date(), "lilly",
-         "opnum", "hinum", "ninum", "address", "f", 101, "1", null, 64.12);
+         "opnum", "hinum", "ninum", "address", "f", 101, "1", null, 3.25);
 
         System.out.println(testPatient.getVaccineDoses());
         clinic.addPatient(testPatient);
