@@ -24,6 +24,8 @@ class ClinicController {
     public ClinicController(ClinicModel model, ClinicView view) {
         this.model = model;
         this.view = view;
+
+        CreateButtonListener();
     }
 
     /**
