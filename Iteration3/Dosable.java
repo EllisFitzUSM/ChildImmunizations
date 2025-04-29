@@ -75,5 +75,17 @@ public class Dosable {
 		}
 		return false;
 	}
-	
+	/**
+	 * Returns a string representation of the Dosable object.
+	 * The string includes dosage information and age requirements.
+	 * 
+	 * @return a string representation of the core dosable information
+	 */
+	@Override
+	public String toString() {
+		return "dosage=" + dosage +
+			", doseNum=" + doseNum +
+			", maxDose=" + maxDose +
+			", minAge=" + minAge;
+	}
 }
