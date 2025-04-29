@@ -1,3 +1,9 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Optional;
+
+import javax.swing.JOptionPane;
+
 /**
  * The Controller component of the Clinic MVC architecture.
  * Manages the flow of data between Model and View.
@@ -18,6 +24,52 @@ class ClinicController {
     public ClinicController(ClinicModel model, ClinicView view) {
         this.model = model;
         this.view = view;
+        view.addAddPatientButtonListener((ActionListener) new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    addNewPatient(view.showAddPatientDialog());
+                }
+            }
+        );
+        view.addDeletePatientButtonListener((ActionListener) new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedPatientID = view.getSelectedPatientId();
+                //one liner to find the first patient that matchs the ID
+                ImmunizationPatient PatientToBeRemoved = model.getPatients()
+                    .stream().
+                    filter(patient -> patient.getPatientId().equals(selectedPatientID)).
+                    findFirst().
+                    orElse(null);
+
+                int response = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure you want to delete patient:\n" +
+                    "ID: " + PatientToBeRemoved.getPatientId() + "\n" +
+                    "Name: " + PatientToBeRemoved.getName() + "?",
+                    "Confirm Deletion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+                );
+                if (response == JOptionPane.YES_OPTION)
+                    removePatient(PatientToBeRemoved);
+            }
+        }
+        );
+        view.addSearchPatientButtonListener((ActionListener) new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (view.getSearchText() != null) {
+                    ImmunizationPatient p = model.getPatients()
+                        .stream()
+                        .filter(patient -> patient.getPatientId().equals(view.getSearchText()))
+                        .findFirst()
+                        .orElse(null);
+                    view.showSearchResult(p);
+                }
+            }
+        }
+        );
     }
 
     /**
@@ -37,12 +89,27 @@ class ClinicController {
      * 
      * @param patient The patient to add
      */
-    public void addNewPatient(Patient patient) {
-        if (model.addPatient(patient)) {
+    public void addNewPatient(ImmunizationPatient patient) {
+        if (patient != null) {
+            model.addPatient(patient);
             view.displayMessage("Patient added successfully.");
             view.updatePatientsTable(model.getPatients());
         } else {
             view.displayMessage("Failed to add patient.");
+        }
+    }
+
+    /**
+     * Adds a new patient to the clinic.
+     * 
+     * @param patient The patient to add
+     */
+    public void removePatient(ImmunizationPatient patient) {
+        if (model.removePatient(patient)) {
+            view.displayMessage("Patient removed successfully.");
+            view.updatePatientsTable(model.getPatients());
+        } else {
+            view.displayMessage("Failed to removed patient.");
         }
     }
 

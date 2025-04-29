@@ -1,6 +1,3 @@
-import java.awt.List;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -68,7 +65,7 @@ public class Clinic {
      * @param patient The patient to add
      * @return true if patient was added successfully
      */
-    public boolean addPatient(Patient patient) { 
+    public boolean addPatient(ImmunizationPatient patient) { 
         controller.addNewPatient(patient); 
         return true; 
     }
@@ -126,6 +123,7 @@ public class Clinic {
      * 
      * @param args Command line arguments (not used)
      */
+    @SuppressWarnings("deprecation")
     public static void main(String[] args) {
         // Create a Clinic instance
         Clinic clinic = new Clinic("City Clinic", "123 Main Street");
@@ -145,14 +143,17 @@ public class Clinic {
         // Generate reports
         clinic.makeMonthlyReport();
         ImmunizationPatient testPatient = new ImmunizationPatient("1", new Date(), "lilly",
-         "opnum", "hinum", "ninum", "address", "f", 0, "1", null, 64.12);
-        var testVaccine = new Vaccine(123, "COVID", "PHILL", 100, 5, 90, 12, "intramuscular", "arm", null);
+         "opnum", "hinum", "ninum", "address", "f", 101, "1", null, 64.12);
 
         System.out.println(testPatient.getVaccineDoses());
         clinic.addPatient(testPatient);
 
-        var testVisit = new Visit(testPatient, LocalDate.of(2025, 4, 27));
-        testVisit.AdminsterDose(testVaccine);
+        var testVisit = new Visit(testPatient, new Date());
+        var testVaccine1 = new Vaccine(123, "COVID", "PHILL", 100, 5, 90, 12, "intramuscular", "arm", null);
+        var testVaccine2 = new Vaccine(5, "Flu", "PHILL", 100, 5, 90, 12, "intramuscular", "leg", null);
+        testVisit.AdminsterDose(testVaccine1);
+        testVisit.AdminsterDose(testVaccine2);
+
         clinic.addVisit(testVisit);
         // Show clinic details
         System.out.println(clinic);

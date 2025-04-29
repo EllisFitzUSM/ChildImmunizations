@@ -1,7 +1,7 @@
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Visit.java
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Visit extends Dosable{
     private ImmunizationPatient patient;
-    private LocalDate visitDate;
+    private Date visitDate;
     private ArrayList<Vaccine> dosesAdministered;
     private Map<Vaccine, Integer> vaccineDoses; //this seems like a memory leak waiting to happen
     
@@ -23,7 +23,7 @@ public class Visit extends Dosable{
      * @param patient the ImmunizationPatient associated with this visit
      * @param visitDate the date of the visit
      */
-    public Visit(ImmunizationPatient patient, LocalDate visitDate) {
+    public Visit(ImmunizationPatient patient, Date visitDate) {
         this.patient = patient;
         this.visitDate = visitDate;
         this.dosesAdministered = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Visit extends Dosable{
      *
      * @return the LocalDate representing the visit date
      */
-    public LocalDate getVisitDate() {
+    public Date getVisitDate() {
         return visitDate;
     }
 
@@ -95,7 +95,7 @@ public class Visit extends Dosable{
      *
      * @param visitDate the LocalDate to set as the visit date
      */
-    public void setVisitDate(LocalDate visitDate) {
+    public void setVisitDate(Date visitDate) {
         this.visitDate = visitDate;
     }
 

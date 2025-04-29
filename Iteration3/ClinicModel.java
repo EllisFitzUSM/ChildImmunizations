@@ -10,7 +10,7 @@ import java.util.ArrayList;
 class ClinicModel {
     private String name;
     private String address;
-    private ArrayList<Patient> patients;
+    private ArrayList<ImmunizationPatient> patients;
     private ArrayList<Return> monthlyReturns;
     private ArrayList<Visit> visits;
 
@@ -61,7 +61,7 @@ class ClinicModel {
      * 
      * @return List of Patient objects
      */
-    public ArrayList<Patient> getPatients() { return patients; }
+    public ArrayList<ImmunizationPatient> getPatients() { return patients; }
 
     /**
      * Gets the list of monthly returns.
@@ -83,8 +83,17 @@ class ClinicModel {
      * @param patient The patient to add
      * @return true if patient was added successfully
      */
-    public boolean addPatient(Patient patient) {
+    public boolean addPatient(ImmunizationPatient patient) {
         return patients.add(patient);
+    }
+
+    /**
+     * Adds a patient to the clinic's records.
+     * 
+     * @param visit The visit to add
+     */
+    public boolean removePatient(ImmunizationPatient patient) {
+        return patients.remove(patient);
     }
 
     /**

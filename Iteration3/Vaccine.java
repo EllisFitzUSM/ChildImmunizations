@@ -130,9 +130,14 @@ public class Vaccine extends Dosable{
         return "Vaccine{" +
             "ID=" + ID +
             ", name='" + name + '\'' +
+            ", brand='" + brand + '\'' +
+            ", dosageML=" + dosageML +
+            ", numOfDosage=" + numOfDosage +
             ", interval=" + interval +
             ", " + super.toString() + // Includes Dosable information
             ", adminMode='" + adminMode + '\'' +
+            ", adminLocation='" + adminLocation + '\'' +
+            ", diseasesTreated=" + diseasesTreated +
             '}';
     }
 }
