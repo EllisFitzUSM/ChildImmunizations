@@ -1,201 +1,138 @@
-import java.util.ArrayList;
+import java.awt.List;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
-* Clinic.java
-* Basic Clinic class that has little functionality at this point.
-* This class will be used to manage the clinic's operations.
-*
-* @author Abdirahman Mohamed
-* @version April 1, 2025
-*/
+ * Represents a medical clinic using the MVC architecture pattern.
+ * This class serves as the facade for the MVC components.
+ * 
+ * @author Abdirahman Mohamed, Milo Keys cc DeepSeek
+ * @version April 1, 2025
+ */
 public class Clinic {
-    private String name;                                        // The name of the clinic
-    private String address;                                     // The physical address of the clinic
-    private List<Vaccine> immunizations = new ArrayList<>();    // List to store immunization records (NEED TO CHANGE TO A VISIT CLASS EVENTUALLY)
-    private List<Patient> patients = new ArrayList<>();         // List to store patient records
-    private List<Return> monthlyReturns = new ArrayList<>();    //List to store monthly return records.
-    private List<Visit> visits = new ArrayList<>();
+    private ClinicModel model;
+    private ClinicView view;
+    private ClinicController controller;
+
     /**
-    * Default constructor.
-    * Initializes the clinic with default values.
-    */
+     * Constructs a new Clinic with default values.
+     */
     public Clinic() {
-        this.name = "Default Clinic";        // Set a default name for the clinic
-        this.address = "Unknown Address";     // Set a default address
+        this("Default Clinic", "Unknown Address");
     }
 
     /**
-    * Parameterized constructor.
-    * Initializes the clinic with the provided name and address.
-    *
-    * @param name The name of the clinic.
-    * @param address The address of the clinic.
-    */
+     * Constructs a new Clinic with specified name and address.
+     * 
+     * @param name The name of the clinic
+     * @param address The physical address of the clinic
+     */
     public Clinic(String name, String address) {
-        this.name = name;
-        this.address = address;
-        this.immunizations = new ArrayList<>();
-        this.patients = new ArrayList<>();
+        this.model = new ClinicModel(name, address);
+        this.view = new ClinicView();
+        this.controller = new ClinicController(model, view);
     }
 
     /**
-    * Gets the clinic's name.
-    *
-    * @return The name of the clinic.
-    */
-    public String getName() {
-        return name;
-    }
-
-    /**
-    * Sets the clinic's name.
-    *
-    * @param name The new name of the clinic.
-    */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-    * Gets the clinic's address.
-    *
-    * @return The address of the clinic.
-    */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-    * Sets the clinic's address.
-    *
-    * @param address The new address of the clinic.
-    */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-    * Adds a patient to the list.
-    *
-    * @param patient The patient to be added.
-    * @return true when completed.
-    */
-    public boolean addPatient(Patient patient) {
-        this.patients.add(patient);
-        return true;
-    }
-
-    /**
-     * Adds a visit to the clinic.
-     *
-     * @param visit Visit to be added
+     * Gets the clinic name.
+     * 
+     * @return The name of the clinic
      */
-    public void addVisit(Visit visit) {
-        this.visits.add(visit);
+    public String getName() { return model.getName(); }
+
+    /**
+     * Sets the clinic name.
+     * 
+     * @param name The new name for the clinic
+     */
+    public void setName(String name) { controller.updateClinicDetails(name, model.getAddress()); }
+
+    /**
+     * Gets the clinic address.
+     * 
+     * @return The address of the clinic
+     */
+    public String getAddress() { return model.getAddress(); }
+
+    /**
+     * Sets the clinic address.
+     * 
+     * @param address The new address for the clinic
+     */
+    public void setAddress(String address) { controller.updateClinicDetails(model.getName(), address); }
+
+    /**
+     * Adds a patient to the clinic's records.
+     * 
+     * @param patient The patient to add
+     * @return true if patient was added successfully
+     */
+    public boolean addPatient(Patient patient) { 
+        controller.addNewPatient(patient); 
+        return true; 
     }
 
     /**
-    * Records a new immunization in the clinic.
-    *
-    * @param immunization The Immunization record to add.
-    */
-    public void recordImmunization(Vaccine immunization) { // NEEDS TO BE VISIT
-        immunizations.add(immunization);
+     * Adds a visit to the clinic's records.
+     * 
+     * @param visit The visit to add
+     */
+    public void addVisit(Visit visit) { controller.recordNewVisit(visit); }
+
+    /**
+     * Adds a monthly return to the clinic's records.
+     * 
+     * @param r The return to add
+     * @return true if return was added successfully
+     */
+    public boolean addMonthlyReturn(Return r) { 
+        controller.addNewMonthlyReturn(r); 
+        return true; 
     }
 
     /**
-    * Returns a report of all immunizations recorded in the clinic.
-    * The report is a formatted string listing each immunization record.
-    *
-    * @return A string report of immunizations.
-    */
-    public String getImmunizationReport() {
-        StringBuilder report = new StringBuilder();
-        report.append("Clinic Immunization Report for ").append(name).append(":\n");
-    
-        if (immunizations.isEmpty()) {
-            report.append("No immunizations recorded.\n");
-        } else {
-            for (Vaccine imm : immunizations) {
-                report.append(imm.toString()).append("\n");
-            }
-        }
-        return report.toString();
-    }
-    /**
-     * Adds a monthly return record to this clinic.
-     *
-     * @param r The Return record to add.
-     * @return true if the record was added successfully.
+     * Generates an immunization report.
+     * 
+     * @return An empty string (report is displayed through controller)
      */
-    public boolean addMonthlyReturn(Return r) {
-        return monthlyReturns.add(r);
+    public String getImmunizationReport() { 
+        controller.generateImmunizationReport(); 
+        return ""; 
     }
 
     /**
-     * Generates a formatted monthly return report including all recorded returns.
-     *
-     * @return A string representing the clinic's monthly return report.
+     * Generates a monthly report.
+     * 
+     * @return An empty string (report is displayed through controller)
      */
-    public String makeMonthlyReport() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Monthly Return Report for ").append(name)
-          .append(" (").append(address).append(")\n");
-        sb.append("================================================\n");
-        if (monthlyReturns.isEmpty()) {
-            sb.append("No monthly returns recorded.\n");
-        } else {
-            for (Return r : monthlyReturns) {
-                sb.append(r).append("\n");
-                sb.append("------------------------------------------------\n");
-            }
-        }
-        return sb.toString();
+    public String makeMonthlyReport() { 
+        controller.generateMonthlyReport(); 
+        return ""; 
     }
-   /**
-     * Creates and returns a sample Register record for demonstration.
-    * FIXME: Unimplemented.
-     *
-     * @return A sample Register instance.
-     */
-    public Register makeRegister() {
-        return new Register(
-            LocalDate.of(2025, 4, 15), 100,
-            "John Matworth", "Alice Matworth", 1,
-            "1328 SW 21st St Blue Springs, Missouri, 64015",
-            LocalDate.of(2020, 1, 20),
-            LocalDate.of(2019, 8, 9), 'M', 55.51
-        );
-    }
+
     /**
-    * Provides a string representation of the Clinic object.
-    * This method helps in printing and logging the details of the clinic.
-    *
-    * @return A formatted string with clinic details.
-    */
+     * Returns a string representation of the Clinic.
+     * 
+     * @return String representation of the Clinic
+     */
     @Override
     public String toString() {
-        return String.format("Clinic [Name: %s, Address: %s]", name, address);
+        return String.format("Clinic [Name: %s, Address: %s]", model.getName(), model.getAddress());
     }
+
     /**
-    * Main method to test the basic functionality of the Clinic class.
-    * Demonstrates creating a Clinic instance and printing its details.
-    *
-    * @param args Command line arguments (not used here).
-    */
+     * Main method to demonstrate Clinic functionality.
+     * 
+     * @param args Command line arguments (not used)
+     */
     public static void main(String[] args) {
-        // Create a Clinic instance using the parameterized constructor
+        // Create a Clinic instance
         Clinic clinic = new Clinic("City Clinic", "123 Main Street");
-        // Demonstrate Register creation
-        Register reg = clinic.makeRegister();
-        System.out.println("Sample Register Record:");
-        System.out.println(reg);
-
-        // Demonstrate immunization report (empty)
-        System.out.println(clinic.getImmunizationReport());
-
+        
+        // Demonstrate operations
+        clinic.getImmunizationReport();
+        
         // Create and add a sample monthly return
         Return april = new Return(
             "City Clinic", "Metro Zone", "Central Region", "April 2025",
@@ -204,8 +141,21 @@ public class Clinic {
             18, 7
         );
         clinic.addMonthlyReturn(april);
+        
+        // Generate reports
+        clinic.makeMonthlyReport();
+        ImmunizationPatient testPatient = new ImmunizationPatient("1", new Date(), "lilly",
+         "opnum", "hinum", "ninum", "address", "f", 0, "1", null, 64.12);
+        var testVaccine = new Vaccine(123, "COVID", "PHILL", 100, 5, 90, 12, "intramuscular", "arm", null);
 
-        // Print out the clinic details using the overridden toString method
-        System.out.println(clinic.makeMonthlyReport());
+        System.out.println(testPatient.getVaccineDoses());
+        clinic.addPatient(testPatient);
+
+        var testVisit = new Visit(testPatient, LocalDate.of(2025, 4, 27));
+        testVisit.AdminsterDose(testVaccine);
+        clinic.addVisit(testVisit);
+        // Show clinic details
+        System.out.println(clinic);
+        clinic.view.show();
     }
 }
