@@ -24,6 +24,12 @@ class ClinicController {
     public ClinicController(ClinicModel model, ClinicView view) {
         this.model = model;
         this.view = view;
+    }
+
+    /**
+     * Creates the ActionListeners required for buttons,
+     */
+    private void CreateButtonListener() {
         view.addAddPatientButtonListener((ActionListener) new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -31,9 +37,10 @@ class ClinicController {
                 }
             }
         );
+
         view.addDeletePatientButtonListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        @Override
+        public void actionPerformed(ActionEvent e) {
                 String selectedPatientID = view.getSelectedPatientId();
                 //one liner to find the first patient that matchs the ID
                 ImmunizationPatient PatientToBeRemoved = model.getPatients()
@@ -56,6 +63,7 @@ class ClinicController {
             }
         }
         );
+
         view.addSearchPatientButtonListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
