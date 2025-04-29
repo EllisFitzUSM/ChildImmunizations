@@ -1,37 +1,40 @@
-# ChildImmunizations
-### USM COS 420 Course Project: Team Child Immunization
-Team Lead: Mason Beale
-
-Team 1: Abdirahman Mohamed and Milo Keys
-
-Team 2: Ellis Fitzgerald and Gabrielle Akers
+# Child Immunizations
 
 ## Goals:
 1. Develop a data entry system to replace/ease the use of the <b>Ghana Health Service Immunization Register</b>
 2. Provide an improved way of presenting <b>Immunization Returns reports</b>
 3. Develop a system to alert CHO's of immunization needs
 
-## Commenting Styling:
-**Classes & files:**
+## Development Team
+**Team Lead**
+| Mason Beale |
+|--------|
 
-```
+**Team Members**  
+| Team 1 | Abdirahman Mohamed | Ellis Fitzgerald |
+|--------|--------|--------|
+| Team 2 | Milo Keys | Gabrielle Akers |
+
+## Code Documentation
+**Class Header Example**
+```java
 /**
-* FileName.java
-* Summary of file/class.
-* Can span multiple lines.
+* ImmunizationRecord.java
+* Manages patient immunization history and status tracking.
+* Handles data validation and database interactions.
 *
-* @author Insert Name
-* @version Month Day, Year
+* @author Mason Beale
+* @version 03/15/2024
 */
 ```
-
-**Function & methods:**
-```
+**Method Documentation Example**
+```java
 /**
-* Summary of function/method.
-* Can span multiple lines.
-*
-* @param name *Insert purpose*
-* @return type *Insert purpose*
+* Calculates immunization due dates based on birth date
+* 
+* @param birthDate LocalDate patient's date of birth
+* @param vaccineType String vaccine identifier code
+* @return LocalDate calculated due date
+* @throws InvalidVaccineTypeException for unsupported vaccine codes
 */
 ```
