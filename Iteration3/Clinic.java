@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.time.LocalDate;
+// import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -119,7 +119,7 @@ public class Clinic {
             report.append("No immunizations recorded.\n");
         } else {
             for (Vaccine imm : immunizations) {
-                report.append(imm.toString()).append("\n");
+                report.append(imm.getName()).append("\n");
             }
         }
         return report.toString();
@@ -160,15 +160,15 @@ public class Clinic {
      *
      * @return A sample Register instance.
      */
-    public Register makeRegister() {
-        return new Register(
-            LocalDate.of(2025, 4, 15), 100,
-            "John Matworth", "Alice Matworth", 1,
-            "1328 SW 21st St Blue Springs, Missouri, 64015",
-            LocalDate.of(2020, 1, 20),
-            LocalDate.of(2019, 8, 9), 'M', 55.51
-        );
-    }
+    // public Register makeRegister() {
+    //     return new Register(
+    //         LocalDate.of(2025, 4, 15), 100,
+    //         "John Matworth", "Alice Matworth", 1,
+    //         "1328 SW 21st St Blue Springs, Missouri, 64015",
+    //         LocalDate.of(2020, 1, 20),
+    //         LocalDate.of(2019, 8, 9), 'M', 55.51
+    //     );
+    // }
     /**
     * Provides a string representation of the Clinic object.
     * This method helps in printing and logging the details of the clinic.
@@ -189,9 +189,9 @@ public class Clinic {
         // Create a Clinic instance using the parameterized constructor
         Clinic clinic = new Clinic("City Clinic", "123 Main Street");
         // Demonstrate Register creation
-        Register reg = clinic.makeRegister();
+        // Register reg = clinic.makeRegister();
         System.out.println("Sample Register Record:");
-        System.out.println(reg);
+        // System.out.println(reg);
 
         // Demonstrate immunization report (empty)
         System.out.println(clinic.getImmunizationReport());

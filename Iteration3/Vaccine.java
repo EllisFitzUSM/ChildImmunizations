@@ -3,17 +3,17 @@ import java.util.ArrayList;
 /**
  * Vaccine class extending Dosable
  *
- * @author Milo Keys & Ellis Fitzgerald
- * @version April 17th, 2025
+ * @author Milo Keys, Ellis Fitzgerald, & Gabrielle Akers
+ * @version April 25, 2025
  */
-public class Vaccine extends Dosable {
+public class Vaccine extends Dosable{
     int ID;
     String name;
     String brand;
     int dosageML;
     int numOfDosage;
-    int Interval; //in days
-    int MinAge;
+    int interval; //in days
+    int minAge;
     String adminMode;
     String adminLocation;
     ArrayList<String> diseasesTreated;
@@ -39,8 +39,8 @@ public class Vaccine extends Dosable {
         this.brand = brand;
         this.dosageML = dosageML;
         this.numOfDosage = numOfDosage;
-        this.Interval = Interval;
-        this.MinAge = MinAge;
+        this.interval = Interval;
+        super.minAge = MinAge;
         this.adminMode = adminMode;
         this.adminLocation = adminLocation;
         this.diseasesTreated = diseasesTreated;
@@ -53,5 +53,68 @@ public class Vaccine extends Dosable {
      */
     public int getDosageML() {
         return dosageML;
+    }
+
+    /**
+    *Gets the number of doses
+    *
+    *@return numOfDosage
+    */
+    public int getNumOfDosage(){
+        return numOfDosage;
+    }
+
+    /**
+    *Gets interval between vaccines
+    *
+    *@return length of time there should be between vaccines
+    */
+    public int getInterval(){
+        return interval;
+    }
+
+    /**
+    *Gets the minimum age for the vaccine
+    *
+    *@return minAge
+    */
+    public int getMinAge(){
+        return minAge;
+    }
+
+    /**
+    *Gets the vaccine ID
+    *
+    *@return ID
+    */
+    public int getID(){
+        return ID;
+    }
+
+    /**
+    *Gets the vaccine name
+    *
+    *@return name
+    */
+    public String getName(){
+        return name;
+    }
+
+    /**
+    *Gets the vaccine brand
+    *
+    *@return brand
+    */
+    public String getBrand(){
+        return brand;
+    }
+  
+    /**
+    *Gets the list of diseases that the vaccine treats
+    *
+    *@return diseasesTreated
+    */
+    public ArrayList<String> getDiseasesTreated(){
+        return diseasesTreated;
     }
 }
