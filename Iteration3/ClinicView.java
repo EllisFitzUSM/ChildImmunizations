@@ -63,7 +63,7 @@ public class ClinicView {
     private void initializeGUI() {
         frame = new JFrame("Clinic Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(1000, 600);
         
         mainPanel = new JPanel(new BorderLayout());
         tabbedPane = new JTabbedPane();
