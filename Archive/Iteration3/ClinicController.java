@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
@@ -24,14 +26,15 @@ class ClinicController {
     public ClinicController(ClinicModel model, ClinicView view) {
         this.model = model;
         this.view = view;
-
-        CreateButtonListener();
+        view.controller = this;
+        CreatePatientButtonListener();
+        CreateVisitButtonListener();
     }
 
     /**
-     * Creates the ActionListeners required for buttons,
+     * Creates the ActionListeners required for patient tab's buttons,
      */
-    private void CreateButtonListener() {
+    private void CreatePatientButtonListener() {
         view.addAddPatientButtonListener((ActionListener) new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -45,11 +48,7 @@ class ClinicController {
         public void actionPerformed(ActionEvent e) {
                 String selectedPatientID = view.getSelectedPatientId();
                 //one liner to find the first patient that matchs the ID
-                ImmunizationPatient PatientToBeRemoved = model.getPatients()
-                    .stream().
-                    filter(patient -> patient.getPatientId().equals(selectedPatientID)).
-                    findFirst().
-                    orElse(null);
+                ImmunizationPatient PatientToBeRemoved = model.getPatientByPatientID(selectedPatientID);
 
                 int response = JOptionPane.showConfirmDialog(
                     null,
@@ -70,18 +69,93 @@ class ClinicController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (view.getSearchText() != null) {
-                    ImmunizationPatient p = model.getPatients()
-                        .stream()
-                        .filter(patient -> patient.getPatientId().equals(view.getSearchText()))
-                        .findFirst()
-                        .orElse(null);
+                    ImmunizationPatient p = model.getPatientByPatientID(view.getSearchText());
                     view.showSearchResult(p);
                 }
             }
         }
         );
     }
+    /**
+     * Creates the ActionListeners required for patient tab's buttons,
+     */
+    private void CreateVisitButtonListener() {
+        view.addAddVisitButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Visit newVisit = view.showAddVisitDialog();
+                if (newVisit != null) {
+                    recordNewVisit(newVisit);
+                }
+            }
+        });
 
+        view.addDeleteVisitButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = view.getSelectedVisitIndex();
+                if (selectedIndex >= 0) {
+                    Visit visitToRemove = model.getVisits().get(selectedIndex);
+                    int response = JOptionPane.showConfirmDialog(
+                        null,
+                        "Are you sure you want to delete this visit?\n" +
+                        "Patient: " + visitToRemove.getPatient().getName() + "\n" +
+                        "Date: " + ClinicView.dateFormat.format(visitToRemove.getVisitDate()),
+                        "Confirm Deletion",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
+                    );
+                    if (response == JOptionPane.YES_OPTION) {
+                        model.getVisits().remove(selectedIndex);
+                        view.updateVisitsTable(model.getVisits());
+                        view.displayMessage("Visit deleted successfully.");
+                    }
+                } else {
+                    view.displayMessage("No visit selected.");
+                }
+            }
+        });
+
+        view.addSearchVisitButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String searchText = view.getVisitsSearchText();
+                if (searchText != null && !searchText.isEmpty()) {
+                    if (searchText.contains("/")) {
+                        try {
+                            var date = ClinicView.dateFormat.parse(searchText);
+                            view.updateVisitsTable((ArrayList<Visit>) model.getVisitByDate(date, ClinicView.dateFormat));
+                        } catch (Exception error) {
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "Invalid date format or input",
+                                "Input Error",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                        }
+                    }
+                    else {
+                        List<Visit> filteredVisits = model.getVisits().stream()
+                        .filter(v -> v.getPatient().getPatientId().equals(searchText))
+                        .collect(Collectors.toList());
+                        view.updateVisitsTable((ArrayList<Visit>) filteredVisits);
+                    }
+                } else {
+                    view.updateVisitsTable(model.getVisits());
+                }
+            }
+        });
+    }
+    /**
+     * Finds a Patient by their patientID
+     * Facade
+     * 
+     * @param ID the ID of the patient
+     * @return returns the Patient null if not found
+     */
+    public ImmunizationPatient getPatientByPatientID(String ID) {
+        return model.getPatientByPatientID(ID);
+    }
     /**
      * Updates the clinic's details.
      * 

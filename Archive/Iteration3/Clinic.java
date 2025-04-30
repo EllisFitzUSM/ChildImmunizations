@@ -141,19 +141,30 @@ public class Clinic {
         
         // Generate reports
         clinic.makeMonthlyReport();
-        ImmunizationPatient testPatient = new ImmunizationPatient("1", new Date(), "lilly",
-         "opnum", "hinum", "ninum", "address", "f", 101, "1", null, 3.25);
+        ImmunizationPatient testPatient1 = new ImmunizationPatient("1", new Date(), "Lilly",
+         "opnum", "hinum", "ninum", "address", "Female", 101, "0", null, 64.12);
+        ImmunizationPatient testPatient2 = new ImmunizationPatient("13", new Date(), "Aurora",
+         "1283568", "12398758", "123956", "address", "Female", 50, "1", null, 40.29);
+        ImmunizationPatient testPatient3 = new ImmunizationPatient("40", new Date(), "Zeb",
+         "1245123", "61236", "2157258", "address", "Male", 30, "1", null, 50.23);
 
-        System.out.println(testPatient.getVaccineDoses());
-        clinic.addPatient(testPatient);
+        System.out.println(testPatient1.getVaccineDoses());
+        clinic.addPatient(testPatient1);
+        clinic.addPatient(testPatient2);
+        clinic.addPatient(testPatient3);
 
-        var testVisit = new Visit(testPatient, new Date());
-        var testVaccine1 = new Vaccine(123, "COVID", "PHILL", 100, 5, 90, 12, "intramuscular", "arm", null);
+        var testVisit = new Visit(testPatient1, new Date());
+        var testVaccine1 = new Vaccine(14, "COVID", "PHILL", 100, 5, 90, 12, "intramuscular", "arm", null);
         var testVaccine2 = new Vaccine(5, "Flu", "PHILL", 100, 5, 90, 12, "intramuscular", "leg", null);
         testVisit.AdminsterDose(testVaccine1);
         testVisit.AdminsterDose(testVaccine2);
 
         clinic.addVisit(testVisit);
+        clinic.addVisit(new Visit(testPatient1, new Date(), "good check up"));
+        clinic.addVisit(new Visit(testPatient2, new Date(), "I hear the gang of four is good reading this time of year"));
+        clinic.addVisit(new Visit(testPatient3, new Date()));
+
+
         // Show clinic details
         System.out.println(clinic);
         clinic.view.show();
