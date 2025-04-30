@@ -54,7 +54,7 @@ public class Visit{
      */
     public void addDoses() {  	
     	for(Vaccine vaccine : vaccineDoses.keySet()) {
-    		if(isDosable(patient, vaccine)) {
+    		if(vaccine.isDosable(patient, vaccine)) {
     			patient.addVaccineDoses(vaccine);
     			dosesAdministered.add(vaccine);
     		}
