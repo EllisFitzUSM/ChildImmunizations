@@ -6,7 +6,7 @@
  * @version April 17th, 2025
  */
 public class Vitamin extends Dosable {
-    int dosageMG;
+    double dosageMG;
     int vitaminNeeded;
     int deficient;
 
@@ -28,7 +28,7 @@ public class Vitamin extends Dosable {
      *
      * @return Dosage in milligrams.
      */
-    public int getDosageMG() {
+    public double getDosageMG() {
         return dosageMG;
     }
 }

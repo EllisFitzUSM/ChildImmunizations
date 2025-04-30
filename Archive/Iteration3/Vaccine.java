@@ -6,14 +6,13 @@ import java.util.ArrayList;
  * @author Milo Keys, Ellis Fitzgerald, & Gabrielle Akers
  * @version April 25, 2025
  */
-public class Vaccine extends Dosable{
+public class Vaccine extends Dosable {
     int ID;
     String name;
     String brand;
-    int dosageML;
+    double dosageML;
     int numOfDosage;
     int interval; //in days
-    int minAge;
     String adminMode;
     String adminLocation;
     ArrayList<String> diseasesTreated;
@@ -32,8 +31,8 @@ public class Vaccine extends Dosable{
      * @param adminLocation where the Vaccine is injected
      * @param diseasesTreated what diseases does the Vaccine treat
      */
-    public Vaccine(int ID, String name, String brand, int dosageML, int numOfDosage, int Interval,
-                   int MinAge, String adminMode, String adminLocation, ArrayList<String> diseasesTreated) {
+    public Vaccine(int ID, String name, String brand, double dosageML, int numOfDosage, int Interval,
+                   int MinAge, String adminMode, String adminLocation, ArrayList<String> diseasesTreated, double minWeightKG) {
         this.ID = ID;
         this.name = name;
         this.brand = brand;
@@ -44,6 +43,7 @@ public class Vaccine extends Dosable{
         this.adminMode = adminMode;
         this.adminLocation = adminLocation;
         this.diseasesTreated = diseasesTreated;
+        this.minWeightKG = minWeightKG;
     }
 
     /**
@@ -51,7 +51,7 @@ public class Vaccine extends Dosable{
      *
      * @return Dosage in Milliliters.
      */
-    public int getDosageML() {
+    public double getDosageML() {
         return dosageML;
     }
 
@@ -71,15 +71,6 @@ public class Vaccine extends Dosable{
     */
     public int getInterval(){
         return interval;
-    }
-
-    /**
-    *Gets the minimum age for the vaccine
-    *
-    *@return minAge
-    */
-    public int getMinAge(){
-        return minAge;
     }
 
     /**

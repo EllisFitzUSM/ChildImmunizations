@@ -154,8 +154,8 @@ public class Clinic {
         clinic.addPatient(testPatient3);
 
         var testVisit = new Visit(testPatient1, new Date());
-        var testVaccine1 = new Vaccine(14, "COVID", "PHILL", 100, 5, 90, 12, "intramuscular", "arm", null);
-        var testVaccine2 = new Vaccine(5, "Flu", "PHILL", 100, 5, 90, 12, "intramuscular", "leg", null);
+        var testVaccine1 = new Vaccine(14, "COVID", "PHILL", 100.0, 5, 90, 12, "intramuscular", "arm", null, 6);
+        var testVaccine2 = new Vaccine(5, "Flu", "PHILL", 100.0, 5, 90, 12, "intramuscular", "leg", null, 10);
         testVisit.AdminsterDose(testVaccine1);
         testVisit.AdminsterDose(testVaccine2);
 

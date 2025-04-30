@@ -14,6 +14,7 @@ public class Dosable {
 	LocalDate nextDose;
 	int age;
 	int minAge;
+	double minWeightKG;
 	
 	/**
 	 * Checks if the patient's age meets the minimum required age.
@@ -51,6 +52,24 @@ public class Dosable {
 		else {
 			return false;
 		}
+	}
+
+	/**
+	 *Gets the minimum age for the vaccine
+	 *
+	 *@return minAge
+	 */
+	public int getMinAge(){
+		return minAge;
+	}
+
+	/**
+	 * Gets the minimum weight for the dosable
+	 *
+	 * @return minWeightKG
+	 */
+	public double getMinWeightKG(){
+		return minWeightKG;
 	}
 	
 	/**
