@@ -1,4 +1,8 @@
+import java.util.List;
+import java.util.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * The Model component of the Clinic MVC architecture.
@@ -113,5 +117,32 @@ class ClinicModel {
      */
     public boolean addMonthlyReturn(Return r) {
         return monthlyReturns.add(r);
+    }
+
+    /**
+     * Finds a Patient by their patientID
+     * 
+     * @param ID the ID of the patient
+     * @return returns the Patient null if not found
+     */
+    public ImmunizationPatient getPatientByPatientID(String ID) {
+        return patients
+            .stream().
+            filter(patient -> patient.getPatientId().equals(ID)).
+            findFirst().
+            orElse(null);
+    }
+
+    /**
+     * Finds a Patient by their patientID
+     * 
+     * @param ID the ID of the patient
+     * @return returns the Patient null if not found
+     */
+    public List<Visit> getVisitByDate(Date date, DateFormat dateFor) {
+        return visits
+            .stream()
+            .filter(visit -> dateFor.format(visit.getVisitDate()).equals(dateFor.format(date)))
+            .collect(Collectors.toList());
     }
 }

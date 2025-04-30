@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +14,7 @@ public class Visit extends Dosable{
     private Date visitDate;
     private ArrayList<Vaccine> dosesAdministered;
     private Map<Vaccine, Integer> vaccineDoses; //this seems like a memory leak waiting to happen
+    private String remarks;
     
     /**
      * Constructs a Visit instance with the specified patient and visit date.
@@ -29,6 +29,22 @@ public class Visit extends Dosable{
         this.dosesAdministered = new ArrayList<>();
         this.vaccineDoses = patient.getVaccineDoses();
     }
+        /**
+     * Constructs a Visit instance with the specified patient and visit date.
+     * Initializes the dosesAdministered list and sets the vaccineDoses from the patient.
+     *
+     * @param patient the ImmunizationPatient associated with this visit
+     * @param visitDate the date of the visit
+     * @param remarks the remarks about a patient
+     */
+    public Visit(ImmunizationPatient patient, Date visitDate, String remarks) {
+        this.patient = patient;
+        this.visitDate = visitDate;
+        this.dosesAdministered = new ArrayList<>();
+        this.vaccineDoses = patient.getVaccineDoses();
+        this.remarks = remarks;
+    }
+
 
     /**
      * Adds vaccine doses to the patient if the vaccine is eligible to be administered.
@@ -97,6 +113,24 @@ public class Visit extends Dosable{
      */
     public void setVisitDate(Date visitDate) {
         this.visitDate = visitDate;
+    }
+
+    /**
+     * Gets the remarks of this visit.
+     *
+     * @return the remarks
+     */
+    public String getRemarks() {
+        return remarks;
+    }
+
+    /**
+     * Sets the remarks of this visit.
+     *
+     * @param remarks the remarks tobe set
+     */
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     /**

@@ -14,7 +14,8 @@ import java.util.Locale;
  * @version April 28, 2025
  */
 public class ClinicView {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+    public ClinicController controller;
 
     private JFrame frame;
     private JPanel mainPanel;
@@ -42,6 +43,10 @@ public class ClinicView {
     private JPanel visitsPanel;
     private JTable visitsTable;
     private JScrollPane visitsScrollPane;
+    private JButton searchVisitButton;
+    private JButton deleteVisitButton;
+    private JButton addVisitButton;
+    private JTextField visitsSearchField;
     
     // Reports Tab
     private JPanel reportsPanel;
@@ -170,12 +175,37 @@ public class ClinicView {
         visitsPanel = new JPanel(new BorderLayout());
         
         // Create table model with sample columns
-        String[] columns = {"Patient ID","Date of Visit", "Vaccines", "Remarks"};
-        DefaultTableModel model = new DefaultTableModel(columns, 0);
+        String[] columns = {"Patient ID", "Date of Visit", "Vaccines", "Remarks"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make table cells non-editable
+            }
+        };
         visitsTable = new JTable(model);
+        visitsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         visitsScrollPane = new JScrollPane(visitsTable);
         visitsPanel.add(visitsScrollPane, BorderLayout.CENTER);
+        
+        // Create button panel for visit actions
+        JPanel visitsButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        
+        // Search components
+        visitsSearchField = new JTextField(15);
+        searchVisitButton = new JButton("Search Visit");
+        visitsButtonPanel.add(new JLabel("Search:"));
+        visitsButtonPanel.add(visitsSearchField);
+        visitsButtonPanel.add(searchVisitButton);
+        
+        // Action buttons
+        addVisitButton = new JButton("Add Visit");
+        deleteVisitButton = new JButton("Delete Selected");
+        
+        visitsButtonPanel.add(addVisitButton);
+        visitsButtonPanel.add(deleteVisitButton);
+        
+        visitsPanel.add(visitsButtonPanel, BorderLayout.SOUTH);
         
         tabbedPane.addTab("Visits", visitsPanel);
     }
@@ -337,7 +367,8 @@ public class ClinicView {
                 dateFormat.format(visit.getVisitDate()),
                 visit.getDosesAdministered().stream()
                     .map(Vaccine::getName)
-                    .collect(java.util.stream.Collectors.joining(", "))
+                    .collect(java.util.stream.Collectors.joining(", ")),
+                visit.getRemarks()
             };
             model.addRow(row);
         }
@@ -375,7 +406,6 @@ public class ClinicView {
     
     /**
      * Gets the search text from the search field.
-     * PLACEHOLDER - Returns empty string, actual filtering should be done in controller
      * 
      * @return The current search text
      */
@@ -385,7 +415,6 @@ public class ClinicView {
     
     /**
      * Gets the ID of the currently selected patient in the table.
-     * PLACEHOLDER - Returns -1 if no selection, actual patient lookup should be done in controller
      * 
      * @return The selected patient ID, or -1 if no selection
      */
@@ -403,84 +432,84 @@ public class ClinicView {
      * @return ImmunizationPatient object if created, null if canceled
      */
     public ImmunizationPatient showAddPatientDialog() {
-    JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-    
-    // Create form fields
-    JTextField idField = new JTextField();
-    JTextField DOBField = new JTextField();
-    JTextField nameField = new JTextField();
-    JTextField outNumField = new JTextField();
-    JTextField insuranceNumField = new JTextField();
-    JTextField natIDField = new JTextField();
-    JTextField addressField = new JTextField();
-    JTextField sexField = new JTextField();
-    JTextField ageField = new JTextField();
-    JTextField motherIDField = new JTextField();
-    JTextField weightField = new JTextField();
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        
+        // Create form fields
+        JTextField idField = new JTextField();
+        JTextField DOBField = new JTextField();
+        JTextField nameField = new JTextField();
+        JTextField outNumField = new JTextField();
+        JTextField insuranceNumField = new JTextField();
+        JTextField natIDField = new JTextField();
+        JTextField addressField = new JTextField();
+        JTextField sexField = new JTextField();
+        JTextField ageField = new JTextField();
+        JTextField motherIDField = new JTextField();
+        JTextField weightField = new JTextField();
 
-    
-    // Add fields to panel with labels
-    panel.add(new JLabel("Patient ID:"));
-    panel.add(idField);
-    panel.add(new JLabel("Date Of Birth:"));
-    panel.add(DOBField);
-    panel.add(new JLabel("Name:"));
-    panel.add(nameField);
-    panel.add(new JLabel("Out-Patient Number:"));
-    panel.add(outNumField);
-    panel.add(new JLabel("Health Insurance Number:"));
-    panel.add(insuranceNumField);
-    panel.add(new JLabel("National Identification Number:"));
-    panel.add(natIDField);
-    panel.add(new JLabel("Address:"));
-    panel.add(addressField);
-    panel.add(new JLabel("Sex:"));
-    panel.add(sexField);
-    panel.add(new JLabel("Age:"));
-    panel.add(ageField);
-    panel.add(new JLabel("Mother ID:"));
-    panel.add(motherIDField);
-    panel.add(new JLabel("Weight:"));
-    panel.add(weightField);
+        
+        // Add fields to panel with labels
+        panel.add(new JLabel("Patient ID:"));
+        panel.add(idField);
+        panel.add(new JLabel("Date Of Birth:"));
+        panel.add(DOBField);
+        panel.add(new JLabel("Name:"));
+        panel.add(nameField);
+        panel.add(new JLabel("Out-Patient Number:"));
+        panel.add(outNumField);
+        panel.add(new JLabel("Health Insurance Number:"));
+        panel.add(insuranceNumField);
+        panel.add(new JLabel("National Identification Number:"));
+        panel.add(natIDField);
+        panel.add(new JLabel("Address:"));
+        panel.add(addressField);
+        panel.add(new JLabel("Sex:"));
+        panel.add(sexField);
+        panel.add(new JLabel("Age:"));
+        panel.add(ageField);
+        panel.add(new JLabel("Mother ID:"));
+        panel.add(motherIDField);
+        panel.add(new JLabel("Weight:"));
+        panel.add(weightField);
 
 
-    
-    int result = JOptionPane.showConfirmDialog(
-        frame,
-        panel,
-        "Add New Patient",
-        JOptionPane.OK_CANCEL_OPTION,
-        JOptionPane.PLAIN_MESSAGE
-    );
-    
-    if (result == JOptionPane.OK_OPTION) {
-        try {
-            // Create and return new ImmunizationPatient
-            return new ImmunizationPatient(
-                idField.getText(),
-                dateFormat.parse(DOBField.getText()),
-                nameField.getText(),
-                outNumField.getText(),
-                insuranceNumField.getText(),
-                natIDField.getText(),
-                addressField.getText(), sexField.getText(), Integer.parseInt(ageField.getText()),
-                motherIDField.getText(),
-                null,
-                Double.parseDouble(weightField.getText())
-            );
-        } catch (Exception e) {
-            System.err.println(e);
-            JOptionPane.showMessageDialog(
-                frame,
-                "Invalid number or date",
-                "Input Error",
-                JOptionPane.ERROR_MESSAGE
-            );
-            return null;
+        
+        int result = JOptionPane.showConfirmDialog(
+            frame,
+            panel,
+            "Add New Patient",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
+        );
+        
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                // Create and return new ImmunizationPatient
+                return new ImmunizationPatient(
+                    idField.getText(),
+                    dateFormat.parse(DOBField.getText()),
+                    nameField.getText(),
+                    outNumField.getText(),
+                    insuranceNumField.getText(),
+                    natIDField.getText(),
+                    addressField.getText(), sexField.getText(), Integer.parseInt(ageField.getText()),
+                    motherIDField.getText(),
+                    null,
+                    Double.parseDouble(weightField.getText())
+                );
+            } catch (Exception e) {
+                System.err.println(e);
+                JOptionPane.showMessageDialog(
+                    frame,
+                    "Invalid number or date",
+                    "Input Error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+                return null;
+            }
         }
+        return null;
     }
-    return null;
-}
     
 
     /**
@@ -540,5 +569,100 @@ public class ClinicView {
             "Patient Found - " + patient.getName(),
             JOptionPane.INFORMATION_MESSAGE
         );
+    }
+
+        /**
+     * Adds an action listener to the search visit button.
+     * 
+     * @param listener The action listener to add
+     */
+    public void addSearchVisitButtonListener(ActionListener listener) {
+        searchVisitButton.addActionListener(listener);
+    }
+    
+    /**
+     * Adds an action listener to the delete visit button.
+     * 
+     * @param listener The action listener to add
+     */
+    public void addDeleteVisitButtonListener(ActionListener listener) {
+        deleteVisitButton.addActionListener(listener);
+    }
+    
+    /**
+     * Adds an action listener to the add visit button.
+     * 
+     * @param listener The action listener to add
+     */
+    public void addAddVisitButtonListener(ActionListener listener) {
+        addVisitButton.addActionListener(listener);
+    }
+    
+    /**
+     * Gets the search text from the visits search field.
+     * 
+     * @return The current search text for visits
+     */
+    public String getVisitsSearchText() {
+        return visitsSearchField.getText();
+    }
+    
+    /**
+     * Gets the index of the currently selected visit in the table.
+     * 
+     * @return The selected visit index, or -1 if no selection
+     */
+    public int getSelectedVisitIndex() {
+        return visitsTable.getSelectedRow();
+    }
+
+    /**
+     * Shows a dialog for adding a new visit with all required fields.
+     * 
+     * @return Visit object if created, null if canceled
+     */
+    public Visit showAddVisitDialog() {
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        
+        // Create form fields
+        JTextField patientIdField = new JTextField();
+        JTextField dateField = new JTextField();
+        JTextField vaccinesField = new JTextField();
+        JTextField remarksField = new JTextField();
+        
+        // Add fields to panel with labels
+        panel.add(new JLabel("Patient ID:"));
+        panel.add(patientIdField);
+        panel.add(new JLabel("Date (dd/MM/yyyy):"));
+        panel.add(dateField);
+        panel.add(new JLabel("Vaccines (comma separated):"));
+        panel.add(vaccinesField);
+        panel.add(new JLabel("Remarks:"));
+        panel.add(remarksField);
+        
+        int result = JOptionPane.showConfirmDialog(
+            frame,
+            panel,
+            "Add New Visit",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                ImmunizationPatient patient = controller.getPatientByPatientID(patientIdField.getText()); //breaking some rules here FYI
+                return new Visit(patient, dateFormat.parse(dateField.getText()), remarksField.getText());
+            } catch (Exception e) {
+                System.err.println(e);
+                JOptionPane.showMessageDialog(
+                    frame,
+                    "Invalid date format or input",
+                    "Input Error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+                return null;
+            }
+        }
+        return null;
     }
 }
