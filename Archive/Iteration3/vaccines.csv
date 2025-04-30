@@ -1,0 +1,2 @@
+id,name,brand,dosageml,dosage count,interval days,treats,stock,min_age,min_weight_kg
+1,COVID mRNA,Pfizer,0.3,2,30,[COVID-19],50,13,60.0
