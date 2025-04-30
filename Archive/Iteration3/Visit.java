@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Ellis Fitzgerald & Gabrielle Akers
  * @version April 25, 2025
  */
-public class Visit extends Dosable{
+public class Visit{
     private ImmunizationPatient patient;
     private Date visitDate;
     private ArrayList<Vaccine> dosesAdministered;
