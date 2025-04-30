@@ -41,3 +41,8 @@ Each iterations code is stored in a separate fold in Archive. For each iteration
 * @throws InvalidVaccineTypeException for unsupported vaccine codes
 */
 ```
+## Ai Use
+Throughout this project, Ai was used for a few purposes. 
+* Making basic skeletons when new classes were created
+* Documenting older files with our new documentation styles (listed above)
+* Making the readme look better in markdown
