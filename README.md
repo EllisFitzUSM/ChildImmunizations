@@ -46,3 +46,8 @@ Throughout this project, Ai was used for a few purposes.
 * Making basic skeletons when new classes were created
 * Documenting older files with our new documentation styles (listed above)
 * Making the readme look better in markdown
+
+## To Run
+Many files have a main function that will give an example of what the class is.
+
+To see the GUI, run ChildImmunizations/Archive/Iteration3/Clinic.java
